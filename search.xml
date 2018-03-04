@@ -16,10 +16,10 @@
     <url>%2F2018%2F03%2F04%2FDucci-Sequence-UVA-1594%2F</url>
     <content type="text"><![CDATA[按照题目来就好了 到1000次时还不全为零那就是循环数列 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define MAXN 20bool compare(int *a,int *b,int n)&#123; for(int i=0;i&lt;n;i++)&#123; if(a[i]==b[i]) continue; else return false; &#125; return true;&#125;int main() &#123; int n; int T; freopen("test","r",stdin); cin&gt;&gt;T; while(T--) &#123; cin &gt;&gt; n; int exp[MAXN]; int cha[MAXN]; int zero[MAXN]; for (int i = 0; i &lt; n; i++) cin &gt;&gt; exp[i]; for (int i = 0; i &lt; n; i++) cha[i] = exp[i]; for (int i = 0; i &lt; n; i++) zero[i] = 0; int i; for (i = 0; i &lt; 1000; i++) &#123; int x = cha[0]; for (int j = 0; j &lt; n - 3; j++) &#123; cha[j] = abs(cha[j] - cha[(j + 1) % n]); &#125; cha[n - 1] = abs(cha[n - 1] - x); if (compare(cha, zero, n)) &#123; cout &lt;&lt; "ZERO" &lt;&lt; endl; i = 1005; &#125; &#125; if (i != 1006) cout &lt;&lt; "LOOP" &lt;&lt; endl; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>Uva刷题</category>
+        <category>紫书第五章习题</category>
       </categories>
       <tags>
-        <tag>紫书第五章习题</tag>
+        <tag>水题</tag>
       </tags>
   </entry>
   <entry>
