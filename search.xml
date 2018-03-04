@@ -5,7 +5,7 @@
     <url>%2F2018%2F03%2F04%2FThrowing-cards-away-I-UVA-10935%2F</url>
     <content type="text"><![CDATA[题目就是最基本的队列基本应用 先进先出 被格式卡了一会 主要原因就是1的时候没空格emmmmm绝了 1234567891011121314151617181920212223242526272829303132#include&lt;iostream&gt;#include&lt;queue&gt;using namespace std;int main()&#123; int n;// freopen("in","r",stdin); while(cin&gt;&gt;n&amp;&amp;n)&#123; queue&lt;int&gt; q; bool flag=true; for(int i=1;i&lt;=n;i++) q.push(i); cout&lt;&lt;"Discarded cards:"; while(q.size()!=1)&#123; if(flag)&#123; cout&lt;&lt;" "&lt;&lt;q.front(); q.pop(); if(q.size()!=1)&#123; cout&lt;&lt;","; &#125; flag=!flag; &#125; else&#123; q.push(q.front()); q.pop(); flag=!flag; &#125; &#125; cout&lt;&lt;endl; cout&lt;&lt;"Remaining card: "&lt;&lt;q.front()&lt;&lt;endl; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>Uva刷题</category>
+        <category>紫书第五章习题</category>
       </categories>
       <tags>
         <tag>水题</tag>
@@ -19,7 +19,7 @@
         <category>Uva刷题</category>
       </categories>
       <tags>
-        <tag>水题</tag>
+        <tag>紫书第五章习题</tag>
       </tags>
   </entry>
   <entry>
