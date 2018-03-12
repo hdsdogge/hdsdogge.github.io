@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cheese Aizu - 0558]]></title>
+    <url>%2F2018%2F03%2F12%2FpostCheese-Aizu-0558%2F</url>
+    <content type="text"><![CDATA[卡了好久 自己的思路有问题 不过这题也让自己对dfs理解深入了一些 dfs只能一个点对一个点用 对于多点问题 多次调用dfs才可以 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include &lt;iostream&gt;#include&lt;queue&gt;using namespace std;const int maxn=1005;const int INF=10000;char maze[maxn][maxn];int N,M;int num;typedef pair&lt;int,int&gt; P;int step[][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;int d[maxn][maxn];int fac[10][2];int bfs(int sx,int sy,int ex,int ey)&#123; queue&lt;P&gt; q; P p; int nx,ny; for(int i=0;i&lt;N;i++) for(int j=0;j&lt;M;j++) d[i][j]=INF; d[sx][sy]=0; q.push(P(sx,sy)); //maze[sx][sy]='.'; while(q.size())&#123; p=q.front(); q.pop(); for(int i=0;i&lt;4;i++)&#123; nx=p.first+step[i][0]; ny=p.second+step[i][1]; if(nx&gt;=0&amp;&amp;nx&lt;N&amp;&amp;ny&gt;=0&amp;&amp;ny&lt;M&amp;&amp;maze[nx][ny]!='X'&amp;&amp;d[nx][ny]==INF)&#123; q.push(P(nx,ny)); d[nx][ny]=d[p.first][p.second]+1; if(nx==ex&amp;&amp;ny==ey) return d[ex][ey]; &#125; &#125; &#125; &#125;int main()&#123; //freopen("test","r",stdin); while(cin&gt;&gt;N&gt;&gt;M&gt;&gt;num)&#123; int step=0; for(int i=0;i&lt;N;i++) &#123; for (int j = 0; j &lt; M; j++) &#123; cin &gt;&gt; maze[i][j]; if (maze[i][j] == 'S') &#123; fac[0][0]=i; fac[0][1]=j; &#125; if (isdigit(maze[i][j])) &#123; int index=maze[i][j]-'0'; fac[index][0]=i; fac[index][1]=j; &#125; &#125; &#125; for(int i=0;i&lt;num;i++)&#123; step+=bfs(fac[i][0],fac[i][1],fac[i+1][0],fac[i+1][1]); &#125; cout&lt;&lt;step&lt;&lt;endl; &#125; return 0; &#125;]]></content>
+      <categories>
+        <category>挑战程序设计第二章</category>
+      </categories>
+      <tags>
+        <tag>dfs搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ball Aizu - 0033]]></title>
     <url>%2F2018%2F03%2F10%2FBall-Aizu-0033%2F</url>
     <content type="text"><![CDATA[dfs搜索 一种是放进去 一种是放到另一边 没什么难度 当两边都符合时分两种情况 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;iostream&gt;#include&lt;queue&gt;using namespace std;int a[11];int b[11],c[11];bool flag;queue&lt;int&gt; q1,q2;void dfs(int i)&#123; if(i==0) &#123; q1.push(a[i]); q2.push(-1); dfs(i+1); &#125; if(i==10) &#123; flag = true; return ; &#125; else &#123; for (int k = 0; k &lt; 2; k++) &#123; if (k == 0) &#123; if (q1.back()&lt;a[i]) q1.push(a[i]); else &#123; if(q2.back()&gt;a[i]) return ; else q2.push(a[i]); &#125; dfs(i+1); &#125; if(k==1)&#123; if(q2.back()&lt;a[i]) q2.push(a[i]); else&#123; if(q1.back()&gt;a[i]) return ; else q1.push(a[i]); &#125; dfs(i+1); &#125; &#125; &#125;&#125;int main() &#123; int n; freopen("test","r",stdin); cin&gt;&gt;n; while(n--)&#123; flag=false; for(int i=0;i&lt;10;i++) cin&gt;&gt;a[i]; dfs(0); if(flag) cout&lt;&lt;"YES"&lt;&lt;endl; else cout&lt;&lt;"NO"&lt;&lt;endl; &#125; return 0;&#125;]]></content>
@@ -16,7 +27,7 @@
     <url>%2F2018%2F03%2F10%2FProperty-Distribution-Aizu-0118%2F</url>
     <content type="text"><![CDATA[最基础的dfs 剪枝都不需要的 校队选拔被学弟虐了Orz 谁知道 题目那么水。。 还是自己水平菜 大二了要更加加油呢 一开始area忘记初始化了wa了两发 ORZ 1234567891011121314151617181920212223242526272829303132333435363738#include &lt;iostream&gt;using namespace std;int area;const int maxn=105;char maze[maxn][maxn];const int step[][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;int N,M;void dfs(int x,int y,char ch)&#123; maze[x][y]='$'; for(int i=0;i&lt;4;i++)&#123; int nx=x+step[i][0],ny=y+step[i][1]; if(nx&gt;=0&amp;&amp;ny&gt;=0&amp;&amp;nx&lt;N&amp;&amp;ny&lt;M&amp;&amp;maze[nx][ny]==ch)&#123; dfs(nx,ny,ch); &#125; &#125; return;&#125;int main() &#123; // freopen("test","r",stdin); while(cin&gt;&gt;N&gt;&gt;M&amp;&amp;N+M)&#123; area=0; for(int i=0;i&lt;N;i++) for(int j=0;j&lt;M;j++) cin&gt;&gt;maze[i][j]; for(int i=0;i&lt;N;i++)&#123; for(int j=0;j&lt;M;j++)&#123; if(maze[i][j]!='$')&#123; char ch=maze[i][j]; dfs(i,j,ch); area++; &#125; &#125; &#125; cout&lt;&lt;area&lt;&lt;endl; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>挑战程序设计竞赛 第二章</category>
+        <category>挑战程序设计竞赛第二章</category>
       </categories>
       <tags>
         <tag>dfs 水</tag>
