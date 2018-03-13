@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Backward Digit Sums POJ - 3187]]></title>
+    <url>%2F2018%2F03%2F13%2FBackward-Digit-Sums-POJ-3187%2F</url>
+    <content type="text"><![CDATA[首先发现各个项的系数是二项式公式展开式 （其实就是杨辉三角Orz 初中学的都忘了 然后暴力枚举就好了 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int digit[11];int N,sum;int comb(int k,int n)&#123; if(k==0||k==n) return 1; else &#123; int num=1; int deno=1; for(int i=2;i&lt;=k;i++)&#123; num*=i; &#125; for(int i=n;i&gt;n-k;i--)&#123; deno*=i; &#125; return deno/num; &#125;&#125;int main() &#123; while(cin&gt;&gt;N&gt;&gt;sum)&#123; for(int i=0;i&lt;N;i++) digit[i]=i+1; bool flag=true; while(flag)&#123; int ans=0; for(int i=0;i&lt;N;i++) ans+=comb(i,N-1)*digit[i]; if(ans==sum)&#123; for(int i=0;i&lt;N;i++) &#123; if(i!=N-1) cout &lt;&lt; digit[i] &lt;&lt; ' '; else cout&lt;&lt;digit[i]&lt;&lt;endl; &#125; flag= false; &#125; else next_permutation(digit,digit+N); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>挑战程序设计竞赛</category>
+      </categories>
+      <tags>
+        <tag>暴力穷举</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Smallest Difference POJ - 2718]]></title>
     <url>%2F2018%2F03%2F13%2FSmallest-Difference-POJ-2718%2F</url>
     <content type="text"><![CDATA[用next_permutation生成全排列 然后进行暴力求解 本来是想用贪心做的 但是贪心实在是太麻烦了 情况要考虑太多 然后以后千万别用x-y类似的表达式 被自己坑了一上午orz 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include&lt;algorithm&gt;using namespace std;int num[11];bool used[11];int dig;char ch;int idx;int x1=0,x2=0;int ans;int main() &#123; int T; cin&gt;&gt;T; while(T--)&#123; idx=0; ans=1000000; memset(used, false, sizeof(used)); while(scanf("%d%c",&amp;dig,&amp;ch)==2)&#123; num[idx]=dig; idx++; if(ch=='\n') break; &#125; int len=idx/2; do &#123; if(idx==2)&#123; ans=num[1]-num[0]; break; &#125; if(num[0]==0||num[len]==0) continue; x1=0; x2=0; for(int i=0;i&lt;len;i++)&#123; x1=10*x1+num[i]; &#125; for(int i=len;i&lt;idx;i++)&#123; x2=10*x2+num[i]; &#125; if(abs(x1-x2)&lt;ans) ans=abs(x1-x2); &#125;while(next_permutation(num,num+idx)); cout&lt;&lt;ans&lt;&lt;endl; &#125; return 0;&#125;]]></content>
