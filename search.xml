@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hopscotch POJ - 3050]]></title>
+    <url>%2F2018%2F03%2F14%2FHopscotch-POJ-3050%2F</url>
+    <content type="text"><![CDATA[由于数据量很水 就用bfs简单搜索和set存就好了 今晚莫名其妙的失眠了Orz 可能是在想学姐吧 学姐可真好啊 刷题 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;#include&lt;set&gt;using namespace std;int map[6][6];set&lt;int&gt; S;int step[][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;void dfs(int x,int y,int k,int sum)&#123; if(6==k)&#123; S.insert(sum); return ; &#125; for(int i=0;i&lt;4;i++)&#123; int nx=x+step[i][0],ny=y+step[i][1]; if(nx&gt;=0&amp;&amp;nx&lt;5&amp;&amp;ny&gt;=0&amp;&amp;ny&lt;5) dfs(nx,ny,k+1,sum*10+map[nx][ny]); &#125;&#125;int main() &#123; //freopen("test","r",stdin); for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) cin&gt;&gt;map[i][j]; for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) dfs(i,j,1,map[i][j]); cout&lt;&lt;S.size()&lt;&lt;endl; return 0;&#125;]]></content>
+      <categories>
+        <category>挑战程序设计竞赛</category>
+      </categories>
+      <tags>
+        <tag>bfs简单搜索 以及set的运用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Backward Digit Sums POJ - 3187]]></title>
     <url>%2F2018%2F03%2F13%2FBackward-Digit-Sums-POJ-3187%2F</url>
     <content type="text"><![CDATA[首先发现各个项的系数是二项式公式展开式 （其实就是杨辉三角Orz 初中学的都忘了 然后暴力枚举就好了 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int digit[11];int N,sum;int comb(int k,int n)&#123; if(k==0||k==n) return 1; else &#123; int num=1; int deno=1; for(int i=2;i&lt;=k;i++)&#123; num*=i; &#125; for(int i=n;i&gt;n-k;i--)&#123; deno*=i; &#125; return deno/num; &#125;&#125;int main() &#123; while(cin&gt;&gt;N&gt;&gt;sum)&#123; for(int i=0;i&lt;N;i++) digit[i]=i+1; bool flag=true; while(flag)&#123; int ans=0; for(int i=0;i&lt;N;i++) ans+=comb(i,N-1)*digit[i]; if(ans==sum)&#123; for(int i=0;i&lt;N;i++) &#123; if(i!=N-1) cout &lt;&lt; digit[i] &lt;&lt; ' '; else cout&lt;&lt;digit[i]&lt;&lt;endl; &#125; flag= false; &#125; else next_permutation(digit,digit+N); &#125; &#125; return 0;&#125;]]></content>
