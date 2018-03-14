@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Seven Puzzle Aizu - 0121]]></title>
+    <url>%2F2018%2F03%2F14%2FSeven-Puzzle-Aizu-0121%2F</url>
+    <content type="text"><![CDATA[逆向思维一下 其实就是01234567到要求的字符串的距离 先打个表 输入方式倒是被卡住了一会ORZ 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;iostream&gt;#include &lt;queue&gt;#include &lt;string&gt;#include&lt;map&gt;using namespace std;queue&lt;string&gt; q;//string s;int step[]=&#123;1,-1,4,-4&#125;;map&lt;string,int&gt; dp;void bfs()&#123; string temp; int pos; dp["01234567"]=0; q.push("01234567"); while(q.size()) &#123; temp=q.front(); for(int i=0;i&lt;temp.length();i++) if(temp[i]=='0') pos = i; for(int i=0;i&lt;4;i++)&#123; int np=pos+step[i]; temp=q.front(); if(np&gt;=0&amp;&amp;np&lt;temp.length()&amp;&amp;!(pos==3&amp;&amp;i==0)&amp;&amp;!(pos==4&amp;&amp;i==1))&#123; char ch=temp[np]; temp[np]=temp[pos]; temp[pos]=ch; if(dp[temp]==0&amp;&amp;temp!="01234567") &#123; q.push(temp); dp[temp] = dp[q.front()] + 1; &#125; &#125; &#125; q.pop(); &#125; return ;&#125;int main() &#123; bfs(); int in; freopen("in","r",stdin); while (1) &#123; string s; for (int i = 0;i&lt;8;i++) &#123; if (!(cin &gt;&gt; in)) return 0; else s+=in+'0'; &#125; //cout&lt;&lt;s&lt;&lt;endl; cout&lt;&lt;dp[s]&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>挑战程序设计竞赛</category>
+      </categories>
+      <tags>
+        <tag>简单bfs+打表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hopscotch POJ - 3050]]></title>
     <url>%2F2018%2F03%2F14%2FHopscotch-POJ-3050%2F</url>
     <content type="text"><![CDATA[由于数据量很水 就用bfs简单搜索和set存就好了 今晚莫名其妙的失眠了Orz 可能是在想学姐吧 学姐可真好啊 刷题 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;#include&lt;set&gt;using namespace std;int map[6][6];set&lt;int&gt; S;int step[][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;void dfs(int x,int y,int k,int sum)&#123; if(6==k)&#123; S.insert(sum); return ; &#125; for(int i=0;i&lt;4;i++)&#123; int nx=x+step[i][0],ny=y+step[i][1]; if(nx&gt;=0&amp;&amp;nx&lt;5&amp;&amp;ny&gt;=0&amp;&amp;ny&lt;5) dfs(nx,ny,k+1,sum*10+map[nx][ny]); &#125;&#125;int main() &#123; //freopen("test","r",stdin); for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) cin&gt;&gt;map[i][j]; for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) dfs(i,j,1,map[i][j]); cout&lt;&lt;S.size()&lt;&lt;endl; return 0;&#125;]]></content>
