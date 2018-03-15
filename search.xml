@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cleaning Shifts POJ - 2376]]></title>
+    <url>%2F2018%2F03%2F15%2FCleaning-Shifts-POJ-2376%2F</url>
+    <content type="text"><![CDATA[结构体排序忘了Orz 先排序 然后判断能否完整覆盖棋盘 之后呢在取最远的 话说训练赛又被虐的体无完肤了Orz 12345678910111213141516171819202122232425262728293031323334353637#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int N,T;const int maxn=25005;struct node&#123; int s; int e;&#125;;bool cmp(node a,node b)&#123; return a.s&lt;b.s;&#125;int main() &#123; //freopen("test","r",stdin); while(cin&gt;&gt;N&gt;&gt;T) &#123; node n[maxn]; for (int i = 0; i &lt; N; i++) cin &gt;&gt; n[i].s &gt;&gt; n[i].e; sort(n, n + N, cmp); int temp=1,top=0,ans=0,i=0; while(temp&lt;T&amp;&amp;i&lt;N)&#123; ans++; top=temp; if(n[i].s&gt;temp) break; while(n[i].s&lt;=temp&amp;&amp;i&lt;N)&#123; top=max(n[i].e,top); i++; &#125; temp=top; &#125; if(temp&lt;T) cout&lt;&lt;-1&lt;&lt;endl; else cout&lt;&lt;ans&lt;&lt;endl; &#125;&#125;]]></content>
+      <categories>
+        <category>挑战程序设计竞赛</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Seven Puzzle Aizu - 0121]]></title>
     <url>%2F2018%2F03%2F14%2FSeven-Puzzle-Aizu-0121%2F</url>
     <content type="text"><![CDATA[逆向思维一下 其实就是01234567到要求的字符串的距离 先打个表 输入方式倒是被卡住了一会ORZ 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;iostream&gt;#include &lt;queue&gt;#include &lt;string&gt;#include&lt;map&gt;using namespace std;queue&lt;string&gt; q;//string s;int step[]=&#123;1,-1,4,-4&#125;;map&lt;string,int&gt; dp;void bfs()&#123; string temp; int pos; dp["01234567"]=0; q.push("01234567"); while(q.size()) &#123; temp=q.front(); for(int i=0;i&lt;temp.length();i++) if(temp[i]=='0') pos = i; for(int i=0;i&lt;4;i++)&#123; int np=pos+step[i]; temp=q.front(); if(np&gt;=0&amp;&amp;np&lt;temp.length()&amp;&amp;!(pos==3&amp;&amp;i==0)&amp;&amp;!(pos==4&amp;&amp;i==1))&#123; char ch=temp[np]; temp[np]=temp[pos]; temp[pos]=ch; if(dp[temp]==0&amp;&amp;temp!="01234567") &#123; q.push(temp); dp[temp] = dp[q.front()] + 1; &#125; &#125; &#125; q.pop(); &#125; return ;&#125;int main() &#123; bfs(); int in; freopen("in","r",stdin); while (1) &#123; string s; for (int i = 0;i&lt;8;i++) &#123; if (!(cin &gt;&gt; in)) return 0; else s+=in+'0'; &#125; //cout&lt;&lt;s&lt;&lt;endl; cout&lt;&lt;dp[s]&lt;&lt;endl; &#125; return 0;&#125;]]></content>
